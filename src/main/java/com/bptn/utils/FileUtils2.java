@@ -34,7 +34,7 @@ public class FileUtils2 {
 		scanner = new Scanner ( new File(k.toUri()));
 		while (scanner.hasNextLine()) {
 			String str = scanner.nextLine();
-			logger.debug(str);           // Implement the concept of logging refering to line 19 
+			logger.debug(str);           // Implement the concept of logging reffering to line 19 
 			}
 		}
 		catch ( IOException e) {
@@ -53,8 +53,54 @@ public class FileUtils2 {
 			System.out.println("The file already exists");
 	}
 
-
 	
+	  //readFile Methods
+	  public static void readFile (Path k) throws FileNotFoundException {
+		Scanner scanner; 
+		
+		try {
+		scanner = new Scanner ( new File(k.toUri()));
+		while (scanner.hasNextLine()) {
+			String str = scanner.nextLine();
+			System.out.println(str);
+			}
+		}
+		catch ( IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	 //deleteFile Methods
+	  public static void deleteFile (Path k) throws IOException {
+		try {	
+		  if (Files.exists(k)){
+	            System.out.println("This file" + k + ", exists!");  
+	        }
+			Files.delete(k); 
+	        System.out.println("File succesfully deleted");
+		}
+		catch ( IOException e) {
+			e.printStackTrace();
+	  }
+   }
+	
+      //writeFile method
+	  public static void writeFile (Path k) throws IOException{
+		if (Files.exists(k)) {
+			Files.createFile(k); 
+		}
+		
+		FileWriter writer = new FileWriter(new File(k.toUri()));
+		writer.write("I think like java");
+		System.out.println("File Written Succesfully!"); 
+	      
+	  }
+	  
+	  //updateFile method
+	  
+	  
+
+  
 	public static void main(String[] args) throws IOException {
 		
 		String home = System.getProperty("user.home");
@@ -81,6 +127,9 @@ public class FileUtils2 {
 		isFileExist(p1);
 		isFileExistsWithExceptionHandling(p1);
 		createFileIfNotExist(p1);
+		readFile(p1);
+		deleteFile(p1); 
+		writeFile(p1);
 
 	}
 
