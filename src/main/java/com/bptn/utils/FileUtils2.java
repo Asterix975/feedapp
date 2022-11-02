@@ -70,19 +70,15 @@ public class FileUtils2 {
 		}
 	}
 	
-	 //deleteFile Methods
+	 //deleteFile Method
 	  public static void deleteFile (Path k) throws IOException {
-		try {	
-		  if (Files.exists(k)){
+			if (Files.exists(k)){
 	            System.out.println("This file" + k + ", exists!");  
 	        }
 			Files.delete(k); 
-	        System.out.println("File succesfully deleted");
+	        System.out.println("File succesfully deleted"); 
+		
 		}
-		catch ( IOException e) {
-			e.printStackTrace();
-	  }
-   }
 	
       //writeFile method
 	  public static void writeFile (Path k) throws IOException{
@@ -97,10 +93,17 @@ public class FileUtils2 {
 	  }
 	  
 	  //updateFile method
+	  public static void updateFile(Path k) throws IOException {
+		  if (Files.exists(k)) {
+				Files.createFile(k); 
+			}
+			
+			FileWriter writer = new FileWriter(new File(k.toUri()));
+			writer.write("I think like java");
+			System.out.println("File updated Succesfully!");    
+	  }
 	  
 	  
-
-  
 	public static void main(String[] args) throws IOException {
 		
 		String home = System.getProperty("user.home");
@@ -130,6 +133,7 @@ public class FileUtils2 {
 		readFile(p1);
 		deleteFile(p1); 
 		writeFile(p1);
+		updateFile(p1);
 
 	}
 
