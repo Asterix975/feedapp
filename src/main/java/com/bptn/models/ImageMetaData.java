@@ -16,7 +16,7 @@ public class ImageMetaData {
 	@Column ( name = "\"imageName\"")
 	String imageName;
 	
-	@Column ( name = "\"imageName\"")
+	@Column ( name = "\"imageSize\"")
 	String imageSize;
 	
 	@Column ( name = "\"imageFormat\"")
