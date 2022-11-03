@@ -1,30 +1,43 @@
 package com.bptn.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import javax.persistence.*;
-
-
-@Entity 
-@Table (name = "\"History\"")
-
-
+@Entity
+@Table(name="\"History\"")
 public class History {
-	
+
 	@Id
-	@Column ( name = "\"postID\"")
+	@Column(name="\"postID\"")
 	String postID;
-	
-	@Column ( name = "date")
+
+	@Column(name="date")
 	String date;
-	
-	@Column ( name = "\"postType\"")
+
+	@Column(name="\"postType\"")
 	String postType;
-	
-	@Column ( name = "\"postUpload\"")
+
+	@Column(name="\"postUpload\"")
 	String postUpload;
-	
-	@Column ( name = "\"usernamekey\"")
+
+	@Column(name="\"usernameKey\"")
 	String usernameKey;
+
+	public History() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public History(String postID, String date, String postType, String postUpload, String usernameKey) {
+		super();
+		this.postID = postID;
+		this.date = date;
+		this.postType = postType;
+		this.postUpload = postUpload;
+		this.usernameKey = usernameKey;
+	}
 
 	public String getPostID() {
 		return postID;
@@ -66,22 +79,12 @@ public class History {
 		this.usernameKey = usernameKey;
 	}
 
-	public History(String postID, String date, String postType, String postUpload, String usernameKey) {
-		super();
-		this.postID = postID;
-		this.date = date;
-		this.postType = postType;
-		this.postUpload = postUpload;
-		this.usernameKey = usernameKey;
-	}
-
 	@Override
 	public String toString() {
 		return "History [postID=" + postID + ", date=" + date + ", postType=" + postType + ", postUpload=" + postUpload
 				+ ", usernameKey=" + usernameKey + "]";
 	}
-	
-	
+
 
 
 

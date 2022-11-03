@@ -27,6 +27,20 @@ public class Address {
 	
 	@Column ( name = "pincode")
 	String pincode;
+	
+	public Address() {
+		super();
+	}
+	
+	public Address(String usernameKey, String address, String city, String state, String country, String pincode) {
+		super();
+		this.usernameKey = usernameKey;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.country = country;
+		this.pincode = pincode;
+	}
 
 	public String getUsernameKey() {
 		return usernameKey;
@@ -76,15 +90,7 @@ public class Address {
 		this.pincode = pincode;
 	}
 
-	public Address(String usernameKey, String address, String city, String state, String country, String pincode) {
-		super();
-		this.usernameKey = usernameKey;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.country = country;
-		this.pincode = pincode;
-	}
+	
 
 	@Override
 	public String toString() {

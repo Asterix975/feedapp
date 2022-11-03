@@ -21,6 +21,19 @@ public class Role {
 	
 	@Column ( name = "skills")
 	String skills;
+	
+	public Role() {
+		super();
+	}
+	
+	public Role(String usernameKey, String roleName, String company, String skills) {
+		super();
+		this.usernameKey = usernameKey;
+		this.roleName = roleName;
+		this.company = company;
+		this.skills = skills;
+	}
+
 
 	public String getUsernameKey() {
 		return usernameKey;
@@ -54,14 +67,7 @@ public class Role {
 		this.skills = skills;
 	}
 
-	public Role(String usernameKey, String roleName, String company, String skills) {
-		super();
-		this.usernameKey = usernameKey;
-		this.roleName = roleName;
-		this.company = company;
-		this.skills = skills;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Role [usernameKey=" + usernameKey + ", roleName=" + roleName + ", company=" + company + ", skills="

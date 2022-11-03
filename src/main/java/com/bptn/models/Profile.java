@@ -41,6 +41,26 @@ public class Profile {
 	
 	@Column ( name = "language")
 	String language;
+	
+	public Profile() {
+		super();
+	}
+	
+	public Profile(String usernameKey, String position, String company, String companyAddress, String interests,
+			String experience, String education, String certification, String skills, String language) {
+		super();
+		this.usernameKey = usernameKey;
+		this.position = position;
+		this.company = company;
+		this.companyAddress = companyAddress;
+		this.interests = interests;
+		this.experience = experience;
+		this.education = education;
+		this.certification = certification;
+		this.skills = skills;
+		this.language = language;
+	}
+
 
 	public String getUsernameKey() {
 		return usernameKey;
@@ -122,20 +142,6 @@ public class Profile {
 		this.language = language;
 	}
 
-	public Profile(String usernameKey, String position, String company, String companyAddress, String interests,
-			String experience, String education, String certification, String skills, String language) {
-		super();
-		this.usernameKey = usernameKey;
-		this.position = position;
-		this.company = company;
-		this.companyAddress = companyAddress;
-		this.interests = interests;
-		this.experience = experience;
-		this.education = education;
-		this.certification = certification;
-		this.skills = skills;
-		this.language = language;
-	}
 
 	@Override
 	public String toString() {

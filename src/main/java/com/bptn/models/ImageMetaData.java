@@ -30,6 +30,23 @@ public class ImageMetaData {
 
 	@Column ( name = "\"postKey\"")
 	String postKey;
+	
+	
+	public ImageMetaData() {
+		super();
+	}
+	
+	public ImageMetaData(String imageID, String imageName, String imageSize, String imageFormat, String imageDate,
+			String resolution, String postKey) {
+		super();
+		this.imageID = imageID;
+		this.imageName = imageName;
+		this.imageSize = imageSize;
+		this.imageFormat = imageFormat;
+		this.imageDate = imageDate;
+		this.resolution = resolution;
+		this.postKey = postKey;
+	}
 
 	public String getImageID() {
 		return imageID;
@@ -87,17 +104,7 @@ public class ImageMetaData {
 		this.postKey = postKey;
 	}
 
-	public ImageMetaData(String imageID, String imageName, String imageSize, String imageFormat, String imageDate,
-			String resolution, String postKey) {
-		super();
-		this.imageID = imageID;
-		this.imageName = imageName;
-		this.imageSize = imageSize;
-		this.imageFormat = imageFormat;
-		this.imageDate = imageDate;
-		this.resolution = resolution;
-		this.postKey = postKey;
-	}
+	
 
 	@Override
 	public String toString() {

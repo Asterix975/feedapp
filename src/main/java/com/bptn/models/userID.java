@@ -28,6 +28,18 @@ public class userID {
 	@Column ( name = "\"userPassword\"")
 	String userPassword;
 
+	public userID () {
+		super();
+	}
+	
+	public userID(String username, String name, String emailID, String phoneNumber, String userPassword) {
+		super();
+		this.username = username;
+		this.name = name;
+		this.emailID = emailID;
+		this.phoneNumber = phoneNumber;
+		this.userPassword = userPassword;
+	}
 	
 	public String getUsername() {
 		return username;
@@ -69,14 +81,6 @@ public class userID {
 		this.userPassword = userPassword;
 	}
 
-	public userID(String username, String name, String emailID, String phoneNumber, String userPassword) {
-		super();
-		this.username = username;
-		this.name = name;
-		this.emailID = emailID;
-		this.phoneNumber = phoneNumber;
-		this.userPassword = userPassword;
-	}
 
 	@Override
 	public String toString() {

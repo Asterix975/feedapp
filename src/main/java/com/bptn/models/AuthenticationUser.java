@@ -1,41 +1,61 @@
 package com.bptn.models;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-
-@Entity 
-@Table (name = "\"AuthenticationUser\"")
-
-
+@Entity
+@Table(name="\"AuthenticationUser\"")
 public class AuthenticationUser {
-	
+
 	@Id
-	@Column ( name = "\"usernameKey\"")
+	@Column(name="\"usernameKey\"")
 	String usernameKey;
-	
-	@Column ( name = "\"userPassword\"")
-	String userpassword;
-	
-	@Column ( name = "\"phoneNumber\"")
+
+	@Column(name="\"userPassword\"")
+	String userPassword;
+
+	@Column(name="\"phoneNumber\"")
 	String phoneNumber;
-	
-	@Column ( name = "\"securityQuestion1\"")
+
+	@Column(name="\"securityQuestion1\"")
 	String securityQuestion1;
-	
-	@Column ( name = "\"securityQuestion2\"")
+
+	@Column(name="\"securityQuestion2\"")
 	String securityQuestion2;
-	
-	@Column ( name = "\"securityQuestion3\"")
+
+	@Column(name="\"securityQuestion3\"")
 	String securityQuestion3;
-	
-	@Column ( name = "\"securityAnswer1\"")
+
+	@Column(name="\"securityAnswer1\"")
 	String securityAnswer1;
-	
-	@Column ( name = "\"securityAnswer2\"")
+
+	@Column(name="\"securityAnswer2\"")
 	String securityAnswer2;
-	
-	@Column ( name = "\"securityAnswer3\"")
+
+	@Column(name="\"securityAnswer3\"")
 	String securityAnswer3;
+
+	public AuthenticationUser() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public AuthenticationUser(String usernameKey, String userPassword, String phoneNumber, String securityQuestion1,
+			String securityQuestion2, String securityQuestion3, String securityAnswer1, String securityAnswer2,
+			String securityAnswer3) {
+		super();
+		this.usernameKey = usernameKey;
+		this.userPassword = userPassword;
+		this.phoneNumber = phoneNumber;
+		this.securityQuestion1 = securityQuestion1;
+		this.securityQuestion2 = securityQuestion2;
+		this.securityQuestion3 = securityQuestion3;
+		this.securityAnswer1 = securityAnswer1;
+		this.securityAnswer2 = securityAnswer2;
+		this.securityAnswer3 = securityAnswer3;
+	}
 
 	public String getUsernameKey() {
 		return usernameKey;
@@ -45,12 +65,12 @@ public class AuthenticationUser {
 		this.usernameKey = usernameKey;
 	}
 
-	public String getUserpassword() {
-		return userpassword;
+	public String getUserPassword() {
+		return userPassword;
 	}
 
-	public void setUserpassword(String userpassword) {
-		this.userpassword = userpassword;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 
 	public String getPhoneNumber() {
@@ -109,32 +129,12 @@ public class AuthenticationUser {
 		this.securityAnswer3 = securityAnswer3;
 	}
 
-	public AuthenticationUser(String usernameKey, String userpassword, String phoneNumber, String securityQuestion1,
-			String securityQuestion2, String securityQuestion3, String securityAnswer1, String securityAnswer2,
-			String securityAnswer3) {
-		super();
-		this.usernameKey = usernameKey;
-		this.userpassword = userpassword;
-		this.phoneNumber = phoneNumber;
-		this.securityQuestion1 = securityQuestion1;
-		this.securityQuestion2 = securityQuestion2;
-		this.securityQuestion3 = securityQuestion3;
-		this.securityAnswer1 = securityAnswer1;
-		this.securityAnswer2 = securityAnswer2;
-		this.securityAnswer3 = securityAnswer3;
-	}
-
 	@Override
 	public String toString() {
-		return "AuthenticationUser [usernameKey=" + usernameKey + ", userpassword=" + userpassword + ", phoneNumber="
+		return "AuthenticationUser [usernameKey=" + usernameKey + ", userPassword=" + userPassword + ", phoneNumber="
 				+ phoneNumber + ", securityQuestion1=" + securityQuestion1 + ", securityQuestion2=" + securityQuestion2
 				+ ", securityQuestion3=" + securityQuestion3 + ", securityAnswer1=" + securityAnswer1
 				+ ", securityAnswer2=" + securityAnswer2 + ", securityAnswer3=" + securityAnswer3 + "]";
 	}
-
-	
-
-	
-	
 
 }

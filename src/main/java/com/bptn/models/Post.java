@@ -22,6 +22,17 @@ public class Post{
 	
 	@Column ( name = "\"usernameKey\"")
 	String usernameKey;
+	
+	public Post() {
+		super();
+	}
+	
+	public Post(String postID, String postType, String usernameKey) {
+		super();
+		this.postID = postID;
+		this.postType = postType;
+		this.usernameKey = usernameKey;
+	}
 
 	public String getPostID() {
 		return postID;
@@ -47,12 +58,7 @@ public class Post{
 		this.usernameKey = usernameKey;
 	}
 
-	public Post(String postID, String postType, String usernameKey) {
-		super();
-		this.postID = postID;
-		this.postType = postType;
-		this.usernameKey = usernameKey;
-	}
+	
 
 	@Override
 	public String toString() {

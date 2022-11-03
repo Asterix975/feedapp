@@ -1,7 +1,19 @@
 
 server:
-  port: 8081 
-
+  port: 8081
+    
 logging.level:
-  web: DEBUG    
-  '[com.bptn.controller]': DEBUG 
+  web: OFF
+  '[com.bptn.controller]': DEBUG
+  '[org.hibernate]': DEBUG
+  
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/feedApp 
+    username: postgres
+    password: pg123
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
