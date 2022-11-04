@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bptn.models.userID;
+import com.bptn.models.UserID;
 import com.bptn.repository.LogInRepository;
 
 @Service
@@ -17,13 +17,13 @@ public class LoginService {
 	LogInRepository loginRepository; 
 	
 	
-	public String validateUserCredentials(userID userParam) {
+	public String validateUserCredentials(UserID userParam) {
 		
 		String message = null; 
 		
 		//userID userID = this.loginRepository.findById(userParam.getUsername()).orElse(null); 
 		
-		Optional<userID>opt = this.loginRepository.findById(userParam.getUsername());
+		Optional<UserID>opt = this.loginRepository.findById(userParam.getUsername());
 		
 		
 		if ( opt.isPresent()){

@@ -4,13 +4,16 @@ package com.bptn.models;
 import javax.persistence.Entity; 
 import javax.persistence.Table; 
 import javax.persistence.Column;
+
+import java.util.List;
+
 import javax.persistence.*;
 
 
 @Entity 
 @Table (name = "\"userID\"")
 
-public class userID {
+public class UserID {
 	
 	@Id
 	@Column ( name = "username")
@@ -27,12 +30,15 @@ public class userID {
 	
 	@Column ( name = "\"userPassword\"")
 	String userPassword;
+	
+	@OneToMany(mappedBy="userID") // userID is the object name we use in the post entity
+	List<Post>posts; 
 
-	public userID () {
+	public UserID () {
 		super();
 	}
 	
-	public userID(String username, String name, String emailID, String phoneNumber, String userPassword) {
+	public UserID(String username, String name, String emailID, String phoneNumber, String userPassword) {
 		super();
 		this.username = username;
 		this.name = name;
@@ -79,6 +85,15 @@ public class userID {
 
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
+	}
+	
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+	
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 

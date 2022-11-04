@@ -1,12 +1,26 @@
 package com.bptn.exceptions;
 
-public class InvalidUserCredentialsException extends Exception {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-	private static final long serialVersionUID = 1L;
+public class InvalidUserCredentialsException extends Exception{
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	String errorMessage;
 
+	private static final long serialVersionUID = 4711357458911324597L;
+	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	public InvalidUserCredentialsException() {
+		super();
+		logger.debug("Invalid Name. Please try again.");
+		
 	}
-
-}
+	
+	public InvalidUserCredentialsException(String errorMessage) { 
+	    super(errorMessage);  
+	    logger.debug("Invalid Name. Please try again.");
+	
+	
+	}
+	}   

@@ -26,6 +26,12 @@ public class FeedController {
 		return str; 
 	}
 
+	
+	
+	
+	
+	//class example on calculator 
+	
 	@GetMapping("/calc/{num1}/{num2}/{operator}")
 	public double calculator(@PathVariable("num1") double num1,
 			                 @PathVariable("num2") double num2,

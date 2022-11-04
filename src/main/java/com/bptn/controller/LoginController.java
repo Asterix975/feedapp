@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bptn.models.userID;
+import com.bptn.models.UserID;
 import com.bptn.service.LoginService;
 
 @RestController
@@ -20,7 +20,7 @@ public class LoginController {
 	LoginService loginService; 
 	
 	@PostMapping ("login")
-	public String validateUserCredentials(@RequestBody userID userID) {
+	public String validateUserCredentials(@RequestBody UserID userID) {
 		
 		
 		logger.debug("Validating Credentials: {}", userID );

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.bptn.models.UserID;
 
 @Repository 
-public interface LogInRepository extends JpaRepository<UserID, String> {
+public interface UserRepository extends JpaRepository<UserID, String> {
 
 }
 
