@@ -1,10 +1,13 @@
 package com.bptn.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bptn.models.Post;
 import com.bptn.models.UserID;
 import com.bptn.repository.LogInRepository;
 
@@ -16,19 +19,13 @@ public class LoginService {
 	@Autowired    //dependecy injection : enables automatic dependency injection
 	LogInRepository loginRepository; 
 	
-	
 	public String validateUserCredentials(UserID userParam) {
 		
 		String message = null; 
 		
-		//userID userID = this.loginRepository.findById(userParam.getUsername()).orElse(null); 
-		
 		Optional<UserID>opt = this.loginRepository.findById(userParam.getUsername());
 		
-		
 		if ( opt.isPresent()){
-		//if (userID != null) {
-			//if (userID.getUserPassword().equals(userParam.getUserPassword())) {
 			if (opt.get().getUserPassword().equals(userParam.getUserPassword())) {
 			
 				message = "Login Succesful"; //password is right 
@@ -43,5 +40,11 @@ public class LoginService {
 		
 		return message; 
 		}
+	
+	public List <Post>getPostsByUsername(String username){
+		Optional <UserID> opt = this.loginRepository.findById(username);
+		return opt.orElse(null).getPosts();
+	}
+	
 		
 }

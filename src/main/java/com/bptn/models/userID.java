@@ -34,18 +34,17 @@ public class UserID {
 	@OneToMany(mappedBy="userID") // userID is the object name we use in the post entity
 	List<Post>posts; 
 
+
+	public UserID (String username) {
+		super();
+		this.username = username; 
+	}
+	
+
 	public UserID () {
 		super();
 	}
-	
-	public UserID(String username, String name, String emailID, String phoneNumber, String userPassword) {
-		super();
-		this.username = username;
-		this.name = name;
-		this.emailID = emailID;
-		this.phoneNumber = phoneNumber;
-		this.userPassword = userPassword;
-	}
+
 	
 	public String getUsername() {
 		return username;
@@ -99,9 +98,12 @@ public class UserID {
 
 	@Override
 	public String toString() {
-		return "userID [username=" + username + ", name=" + name + ", emailID=" + emailID + ", phoneNumber="
-				+ phoneNumber + ", userPassword=" + userPassword + "]";
-	} 
+		return "UserID [username=" + username + ", name=" + name + ", emailID=" + emailID + ", phoneNumber="
+				+ phoneNumber + ", userPassword=" + userPassword + ", posts=" + posts + "]";
+	}
+
+
+	
 	
 
 

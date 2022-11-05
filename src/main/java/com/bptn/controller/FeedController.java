@@ -1,34 +1,77 @@
 package com.bptn.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bptn.models.Post;
+import com.bptn.service.FeedService;
+
 @RestController 
 public class FeedController {
 	
-	
-
 	private final Logger logger = LoggerFactory.getLogger(this.getClass()); 
 	
 	
-	@GetMapping("/ping")
+	/*@GetMapping("/ping")
 	public String ping() {
 		
 		//System.out.println("ping executed"); // this will be excuted on the webpage 
-		
 		logger.debug("Ping Executed!"); 
-		
 		String str = "Feed App up and running"; 
-		
 		return str; 
-	}
+	} */
+	
+		@Autowired
+		FeedService feedService;
+		
+		@GetMapping("/posts/username/{username}")
+		public List<Post> getPostsByUsername(@PathVariable("username") String username){
+		
+			logger.debug("Executing getPostsByUsername API");
+			
+	     	List<Post> posts = this.feedService.getPostsbyUsername(username);
+			
+	        return posts;
+		}
+		
+		
+		@GetMapping("/Posts/postId/{postId}")
+		public Optional<Post> getPostsByPostId(@PathVariable("postID") String postID){
+		
+			logger.debug("Executing getPostsBypostID API");
+			
+	     	Optional<Post> posts = this.feedService.getPostsbyPostID(postID);
+			
+	        return posts;
+	        
+		}
+		
+		@GetMapping("/Posts/postType/{postType}")
+		public List<Post> getPostsByPostType(@PathVariable("postType") String postType){
+		
+			logger.debug("Executing getPostsBypostType API");
+			
+	     	List<Post> posts = this.feedService.getPostsbyPostType(postType);
+			
+	        return posts;
+	        
+		}
+
 
 	
 	
 	
+	
+		
+		
+		
 	
 	//class example on calculator 
 	
