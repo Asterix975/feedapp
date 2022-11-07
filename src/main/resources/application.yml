@@ -22,3 +22,7 @@ spring:
     hibernate:
       ddl-auto: validate
       naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+ 
+api:
+   key: a970454c5837435a92d5313490c3152d
+   base.url: https://newsapi.org/v2/everything

@@ -29,6 +29,10 @@ public class Post{
 	UserID userID;   //relation with the userid table 
 	
 	
+	public void setUserID(UserID userID) {
+		this.userID = userID;
+	}
+
 	public Post() {
 		super();
 	}
@@ -68,7 +72,7 @@ public class Post{
 
 	@Override
 	public String toString() {
-		return "Post [postID=" + postID + ", postType=" + postType + ", usernameKey=" + userID.username + "]";
+		return "Post [postID=" + postID + ", postType=" + postType + ", userID=" + userID + "]";
 	} 
 	
 	
