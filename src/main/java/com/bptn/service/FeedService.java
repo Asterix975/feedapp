@@ -34,13 +34,15 @@ public class FeedService {
 		
 		// getPostsbyPostId() 
 		
-        public Optional<Post> getPostsbyPostID( String postID){    
+        public Post getPostsByPostID( String postID){    
 			
-		    Optional<Post> posts = this.feedRepository.findById(postID);
+		    Optional<Post> opt = this.feedRepository.findById(postID);
 			
 			//posts = this.removeEmptyPosts(posts); 
 			
-			return posts; 
+		    System.out.println(opt.orElse(null));
+		    return opt.orElse(null);
+			//return posts; 
 			
         }
 		

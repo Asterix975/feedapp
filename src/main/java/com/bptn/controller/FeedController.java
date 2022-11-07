@@ -42,12 +42,12 @@ public class FeedController {
 		}
 		
 		
-		@GetMapping("/Posts/postId/{postId}")
-		public Optional<Post> getPostsByPostId(@PathVariable("postID") String postID){
+		@GetMapping("/posts/postId/{postId}")
+		public Post getPostsByPostID(@PathVariable("postId") String postID){
 		
 			logger.debug("Executing getPostsBypostID API");
 			
-	     	Optional<Post> posts = this.feedService.getPostsbyPostID(postID);
+	     	Post posts = this.feedService.getPostsByPostID(postID);
 			
 	        return posts;
 	        
