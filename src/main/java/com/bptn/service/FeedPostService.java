@@ -51,11 +51,9 @@ public class FeedPostService {
 		
 		/* 1. build the url of the request for newspapaer */
 		// buildAPurl
-		//
 		String url = this.buildAPIUrl(request); 
 		
 		/*2. send ther equest ot he newsapi and receive resposnce */
-		
 		//getFeedFromNewsAPI (step 7)
 		
 		String feedResult = getFeedFromNewsAPI(url);
@@ -63,14 +61,11 @@ public class FeedPostService {
 		/* 3. store thed ata received in step 2 in postgressl
 		 ///storefeed() (8)
 		 */
-		
 		Post feed = storeFeed(feedResult, request); 
-		
 		return feed;  
 	}
 	
 	private String buildAPIUrl(FeedPostRequest request) {
-		
 		StringBuilder urlBuilder = new StringBuilder();
 		
 		// https://newsapi.org/v2/everything
@@ -91,10 +86,7 @@ public class FeedPostService {
 		}
 		
 		urlBuilder.append("&apikey=").append(apiKey);
-		
 		return urlBuilder.toString(); 
-		
-		
 	}
 
 	private String getFeedFromNewsAPI (String url) {
@@ -105,7 +97,6 @@ public class FeedPostService {
 	private Post storeFeed(String feedResult,FeedPostRequest request) {
 		
 		UserID userId = new UserID(request.getUsername()); 
-		
 		Post feed = new Post();
 		
 		//feed.setPost("Hello"); 
@@ -114,7 +105,6 @@ public class FeedPostService {
 		feed.setPostID(this.generatePostId(request)); 
 		
 		logger.debug("Feed to be stored: {}", feed);
-		
 		return this.feedPostRepository.save(feed); 
 		
 	}
@@ -128,7 +118,6 @@ public class FeedPostService {
 		String postId = postIdBuilder.toString();
 		if (postId.startsWith("_")) {
 			postId = postId.substring(1);
-			
 		}
 		return postId; 
 	}
