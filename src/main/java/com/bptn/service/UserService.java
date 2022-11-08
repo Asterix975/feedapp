@@ -12,36 +12,36 @@ import com.bptn.models.UserID;
 import com.bptn.repository.UserRepository;
 
 @Service
-
 public class UserService {
 	
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass()); 
 	
+	
+	
 @Autowired 
 UserRepository userRepository;
 
-public String userValidation (String username) throws InvalidUserNameException {
-	
-	String message;
-	
-	Optional<UserID> userID = this.userRepository.findById(username);
-
-	
-	if (userID!=null) {
+	public void userValidation (String username) throws InvalidUserNameException {
 		
+		Optional<UserID> opt = this.userRepository.findById(username);
 		
-		message = "User exists"; 
-		
-	} else {
-		throw new InvalidUserNameException("Invalid name, user doesnt exissts");
-		
+		if (opt.isEmpty()) {
+			logger.error("User does not exist", username);
+			throw new InvalidUserNameException( "User does not exist. Try Again"); 
+			
+		} else {
+			logger.error("Username Validated");
+		}
 		
 	}
 	
-	return message;
+	/*String message;
 	
-}
-
-
-
+	Optional<UserID> userID = this.userRepository.findById(username);
+	if (userID!=null) { 
+		message = "User exists"; 
+	} else {
+		throw new InvalidUserNameException("Invalid name, user doesnt exist");	
+	}
+	return message; */
 }

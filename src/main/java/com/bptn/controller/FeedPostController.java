@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bptn.exceptions.InvalidRequestException;
+import com.bptn.exceptions.InvalidUserNameException;
 import com.bptn.models.Post;
+import com.bptn.models.UserID;
 import com.bptn.service.FeedPostService;
 import com.bptn.service.UserService;
 
@@ -40,11 +42,13 @@ public class FeedPostController {
 		try {
 			this.validateRequest(request);
 			
+			this.userService.userValidation(request.getUsername());
+			
 			Post feed = this.feedPostService.getPostFormNewsAndSavePost(request);
 			logger.debug("Post Saved Succesfully"); 
 			
 			return new ResponseEntity<>(feed, HttpStatus.OK);
-		} catch (InvalidRequestException ex) {
+		} catch (InvalidRequestException | InvalidUserNameException ex) {
 			
 			//logger.error(Arrays.toString(ex.getStackTrace()));
 			logger.error(ex.getMessage(),ex); 
