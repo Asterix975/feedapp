@@ -36,7 +36,6 @@ UserRepository userRepository;
 	}
 	
 	/*String message;
-	
 	Optional<UserID> userID = this.userRepository.findById(username);
 	if (userID!=null) { 
 		message = "User exists"; 

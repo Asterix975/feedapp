@@ -54,11 +54,27 @@ public class FeedPostController {
 			logger.error(ex.getMessage(),ex); 
 			//e.printStackTrace();
 			return ResponseEntity.badRequest().body(ex.getMessage()); 
-			
 		}
 		//return this.feedPostService.getPostFormNewsAndSavePost(request); 	
 	
 	}
+	
+	@PostMapping ("/posts/feed/create2")
+	public Post saveFeed2(@RequestBody FeedPostRequest request) 
+	    throws InvalidRequestException, InvalidUserNameException{
+		
+		logger.debug("Executing saveFeed2 API"); 
+		
+			this.validateRequest(request);
+			
+			this.userService.userValidation(request.getUsername());
+			
+			Post feed = this.feedPostService.getPostFormNewsAndSavePost(request);
+			logger.debug("Post Saved Succesfully"); 
+		
+			return feed; 
+		}
+	
 	
 	public void validateRequest(FeedPostRequest request) throws InvalidRequestException {
 		
@@ -71,10 +87,8 @@ public class FeedPostController {
 	//Below is another sample method like the one above if one doesnt want to use stringutil, although
 	//the above method is preffered, cleaner code
 /*private void validateRequest2(FeedPostRequest request) throws InvalidRequestException {
-		
 		if ( (request.getFromDate()!=null && request.getFromDate().trim().isBlank()) ||
 			 (request.getToDate()!=null && request.getToDate().trim().isBlank())) {
-			
 			throw new InvalidRequestException("Invalid request: FromDate and ToDate are required");
 		}	
 	} */
