@@ -1,11 +1,13 @@
 package com.bptn.models;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,20 +30,40 @@ public class Post{
 	@JoinColumn(name="\"usernameKey\"")
 	UserID userID;   //relation with the userid table 
 	
+	@OneToOne(mappedBy = "post")
+	ImageMetaData imageMetaData;   
 	
-	public void setUserID(UserID userID) {
-		this.userID = userID;
-	}
-
 	public Post() {
 		super();
 	}
 	
-	public Post(String postID, String postType, UserID userID) {
+	public Post (String postID) {
+		super();
+		this.postID = postID; 
+	}
+	
+	public Post(String postID, String postType, UserID userID, ImageMetaData imageMetaData) {
 		super();
 		this.postID = postID;
 		this.postType = postType;
 		this.userID = userID;
+		this.imageMetaData = imageMetaData;
+	}
+
+	public UserID getUserID() {
+		return userID;
+	}
+
+	public void setUserID(UserID userID) {
+		this.userID = userID;
+	}
+	
+	public ImageMetaData getImageMetaData() {
+		return imageMetaData;
+	}
+
+	public void setImageMetaData(ImageMetaData imageMetaData) {
+		this.imageMetaData = imageMetaData;
 	}
 
 	public String getPostID() {
@@ -60,22 +82,11 @@ public class Post{
 		this.postType = postType;
 	}
 
-	public UserID getUserID() {
-		return this.userID ;
-	}
-
-	public void setUsernameKey(UserID userID) {
-		this.userID= userID;
-	}
-
-	
-
 	@Override
 	public String toString() {
-		return "Post [postID=" + postID + ", postType=" + postType + ", userID=" + userID + "]";
-	} 
-	
-	
+		return "Post [postID=" + postID + ", postType=" + postType + ", userID=" + userID + ", imageMetaData="
+				+ imageMetaData + "]";
+	}
 	
 	
 }

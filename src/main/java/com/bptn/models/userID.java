@@ -99,12 +99,10 @@ public class UserID {
 	@Override
 	public String toString() {
 		return "UserID [username=" + username + ", name=" + name + ", emailID=" + emailID + ", phoneNumber="
-				+ phoneNumber + ", userPassword=" + userPassword + ", posts=" + posts + "]";
+				+ phoneNumber + ", userPassword=" + userPassword + ", posts=" + posts + "]"; 
 	}
-
-
-	
-	
-
-
 }
+
+
+	
+	

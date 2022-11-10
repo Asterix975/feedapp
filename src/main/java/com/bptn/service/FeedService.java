@@ -20,14 +20,11 @@ public class FeedService {
 	@Autowired
 	FeedRepository feedRepository; 
 	
-	
-		
 		public List<Post>getPostsbyUsername( String username){      //getPostsbyUsername() method 
 			
 		    List<Post> posts = this.feedRepository.findByUserID(new UserID(username));
 			
 			posts = this.removeEmptyPosts(posts); 
-			
 			return posts; 
 			
 		}
@@ -35,11 +32,9 @@ public class FeedService {
 		// getPostsbyPostId() 
 		
         public Post getPostsByPostID( String postID){    
-			
 		    Optional<Post> opt = this.feedRepository.findById(postID);
 			
 			//posts = this.removeEmptyPosts(posts); 
-			
 		    System.out.println(opt.orElse(null));
 		    return opt.orElse(null);
 			//return posts; 
@@ -51,18 +46,15 @@ public class FeedService {
    public List<Post> getPostsbyPostType( String postType){    
 			
 		    List<Post> posts = this.feedRepository.findBypostType(postType);
-			
 			//posts = this.removeEmptyPosts(posts); // removes post that are empty ( can apply on this method) 
-			
 			return posts; 
 	
    }
 	
           //removeEmptyPosts() method.  
 		 List<Post>removeEmptyPosts(List<Post>posts){  
-			 
 			 posts.removeIf(p -> p.getPostType()==null || p.getPostType().isEmpty());
-			 
+
 			 return posts; 
 		 }
 

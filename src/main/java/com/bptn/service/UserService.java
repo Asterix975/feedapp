@@ -17,22 +17,18 @@ public class UserService {
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass()); 
 	
 	
-	
 @Autowired 
 UserRepository userRepository;
 
 	public void userValidation (String username) throws InvalidUserNameException {
-		
 		Optional<UserID> opt = this.userRepository.findById(username);
 		
 		if (opt.isEmpty()) {
 			logger.error("User does not exist", username);
 			throw new InvalidUserNameException( "User does not exist. Try Again"); 
-			
 		} else {
 			logger.error("Username Validated");
 		}
-		
 	}
 	
 	/*String message;

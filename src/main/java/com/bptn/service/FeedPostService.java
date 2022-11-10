@@ -101,7 +101,7 @@ public class FeedPostService {
 		
 		//feed.setPost("Hello"); 
 		feed.setPostType(feedResult); 
-		feed.setUserID(userId);
+		//feed.setUserID(userId); - disabled this because of working on imagemetadata
 		feed.setPostID(this.generatePostId(request)); 
 		
 		logger.debug("Feed to be stored: {}", feed);

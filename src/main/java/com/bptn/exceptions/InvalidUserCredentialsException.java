@@ -3,11 +3,10 @@ package com.bptn.exceptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("all")
 public class InvalidUserCredentialsException extends Exception{
 
 	String errorMessage;
-
-	private static final long serialVersionUID = 4711357458911324597L;
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	

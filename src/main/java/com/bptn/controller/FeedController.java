@@ -21,7 +21,6 @@ public class FeedController {
 	
 	/*@GetMapping("/ping")
 	public String ping() {
-		
 		//System.out.println("ping executed"); // this will be excuted on the webpage 
 		logger.debug("Ping Executed!"); 
 		String str = "Feed App up and running"; 
