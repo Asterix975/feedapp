@@ -65,13 +65,6 @@ public class FeedController {
 
 
 	
-	
-	
-	
-		
-		
-		
-	
 	//class example on calculator 
 	
 	@GetMapping("/calc/{num1}/{num2}/{operator}")

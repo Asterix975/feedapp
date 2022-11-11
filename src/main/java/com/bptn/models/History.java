@@ -3,7 +3,11 @@ package com.bptn.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="\"History\"")
@@ -21,23 +25,25 @@ public class History {
 
 	@Column(name="\"postUpload\"")
 	String postUpload;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="\"usernameKey\"")
+	UserID userID;   
 
-	@Column(name="\"usernameKey\"")
-	String usernameKey;
+	public UserID getUserID() {
+		return userID;
+	}
+
+	public void setUserID(UserID userID) {
+		this.userID = userID;
+	}
 
 	public History() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public History(String postID, String date, String postType, String postUpload, String usernameKey) {
-		super();
-		this.postID = postID;
-		this.date = date;
-		this.postType = postType;
-		this.postUpload = postUpload;
-		this.usernameKey = usernameKey;
-	}
 
 	public String getPostID() {
 		return postID;
@@ -71,18 +77,10 @@ public class History {
 		this.postUpload = postUpload;
 	}
 
-	public String getUsernameKey() {
-		return usernameKey;
-	}
-
-	public void setUsernameKey(String usernameKey) {
-		this.usernameKey = usernameKey;
-	}
-
 	@Override
 	public String toString() {
 		return "History [postID=" + postID + ", date=" + date + ", postType=" + postType + ", postUpload=" + postUpload
-				+ ", usernameKey=" + usernameKey + "]";
+				+ ", userID=" + userID + "]";
 	}
 
 

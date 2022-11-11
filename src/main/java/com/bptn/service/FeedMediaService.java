@@ -1,5 +1,6 @@
 package com.bptn.service;
 
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
@@ -13,13 +14,14 @@ import com.bptn.models.ImageMetaData;
 import com.bptn.models.Post;
 import com.bptn.repository.FeedImageMetaDataRepository;
 
+import request.FeedMediaRequest;
+
 @Service
 public class FeedMediaService {
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass()); 
 	
 	@Autowired 
 	FeedImageMetaDataRepository feedImageDataRepository; 
-	
 	
 	public ImageMetaData getImageMediaByPostKey(String postID) {
 	 ImageMetaData imageMetaDatas = this.feedImageDataRepository.findByPost(new Post(postID));
@@ -32,27 +34,27 @@ public class FeedMediaService {
 		return imageMetaData; 
 	}
 	
-	public ImageMetaData createNewImage ( ImageMetaData imageMetaData,Post post ) {
+	public ImageMetaData createNewImage ( FeedMediaRequest request) { //ImageMetaData imageMetaData,Post post
 		
 		ImageMetaData newImage = new ImageMetaData();
 		
-		newImage.setImageID(this.generateImageId(post)); 
-		newImage.setImageName(imageMetaData.getImageName());
-		newImage.setImageFormat(imageMetaData.getImageFormat());
-		newImage.setImageSize(imageMetaData.getImageSize()); 
-		newImage.setImageDate(imageMetaData.getImageDate()); 
-		newImage.setResolution(imageMetaData.getResolution()); 
-		newImage.setPost(post); 
-		
+		newImage.setImageID(this.generateFeedMetadataId(request)); 
+		newImage.setImageName(request.getImageName());
+		newImage.setImageFormat(request.getImageFormat());
+		newImage.setImageSize(request.getImageSize()); 
+		newImage.setImageDate(LocalDate.now().toString()); 
+		newImage.setResolution(request.getImageResolution()); 
+		newImage.setPost(new Post(request.getPostID())); 
+		 
 		return this.feedImageDataRepository.save(newImage);  
 		
 	}
-	private String generateImageId(Post post) {
+	private String generateFeedMetadataId(FeedMediaRequest request) {
 		Random random = new Random( System.currentTimeMillis());
 		StringBuilder imageIdBuilder = new StringBuilder();
 		
 		imageIdBuilder.append(random.nextInt());
-		imageIdBuilder.append(Objects.hashCode(post.getPostID())); 
+		imageIdBuilder.append(Objects.hashCode(request.getPostID())); 
 		
 		String imageId = imageIdBuilder.toString();
 		if (imageId.startsWith("-")) {

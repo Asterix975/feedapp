@@ -3,7 +3,6 @@ package request;
 public class FeedPostRequest {
 
 	
-	
 	String fromDate;
 	String toDate;
 	String QueryKeyword;

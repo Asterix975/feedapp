@@ -1,7 +1,5 @@
 package com.bptn.models;
 
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,13 +23,16 @@ public class Post{
 	@Column ( name = "\"postType\"")
 	String postType;
 	
+	@OneToOne(mappedBy = "post")
+	ImageMetaData imageMetaData; 
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="\"usernameKey\"")
 	UserID userID;   //relation with the userid table 
 	
-	@OneToOne(mappedBy = "post")
-	ImageMetaData imageMetaData;   
+	//@OneToOne(mappedBy = "post")
+	//ImageMetaData imageMetaData;   
 	
 	public Post() {
 		super();
