@@ -15,7 +15,7 @@ public interface FeedHistoryRepository extends JpaRepository<History, String> {
 	
 	
 	List<History> findByUserID(UserID userID);
-	History findByPostType(String postType); 
+	List<History> findByPostType(String postType); 
 	//List<History> findByPostId(String postID);  not needed
 	//List<History> findByPostType(String postType); 
 	

@@ -1,6 +1,8 @@
 package com.bptn.service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Random;
 
 import org.slf4j.Logger;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.bptn.exceptions.InvalidPostException;
 import com.bptn.models.Post;
 import com.bptn.models.UserID;
 import com.bptn.repository.FeedPostRepository;
@@ -121,5 +124,39 @@ public class FeedPostService {
 		}
 		return postId; 
 	}
+	
+	public void validatePostID(String postID)throws InvalidPostException{
+		Optional<Post> opt = this.feedPostRepository.findById(postID);
+		if (opt.isEmpty()) {
+			logger.debug("PostID={} does not exist", postID); 
+			throw new InvalidPostException ("This postID does not exist");
+		} else {
+			logger.debug("PostID={} validated",postID);
+		}
+		
+	}
+	
+	public void validatePostType ( String postType) throws InvalidPostException{
+		List<Post> opt = this.feedPostRepository.findBypostType(postType);
+		if (opt.isEmpty()) {
+			logger.debug("PostType={} does not exist", postType); 
+			throw new InvalidPostException ("This PostType does not exist");
+		}else {
+			logger.debug("PostType={} validated", postType); 
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
