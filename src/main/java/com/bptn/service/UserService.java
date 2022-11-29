@@ -18,7 +18,7 @@ public class UserService {
 	
 	
 @Autowired 
-UserRepository userRepository;
+UserRepository userRepository; 
 
 	public void userValidation (String username) throws InvalidUserNameException {
 		Optional<UserID> opt = this.userRepository.findById(username);

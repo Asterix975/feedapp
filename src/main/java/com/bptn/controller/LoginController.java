@@ -21,7 +21,7 @@ public class LoginController {
 	//private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass()); //different from carlos code
 	private final Logger logger = LoggerFactory.getLogger(this.getClass()); 
 	
-	@Autowired
+	@Autowired 
 	LoginService loginService; 
 	
 	@PostMapping ("login")

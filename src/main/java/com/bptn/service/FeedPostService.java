@@ -125,27 +125,27 @@ public class FeedPostService {
 		return postId; 
 	}
 	
-	public void validatePostID(String postID)throws InvalidPostException{
-		Optional<Post> opt = this.feedPostRepository.findById(postID);
-		if (opt.isEmpty()) {
-			logger.debug("PostID={} does not exist", postID); 
-			throw new InvalidPostException ("This postID does not exist");
-		} else {
-			logger.debug("PostID={} validated",postID);
-		}
-		
-	}
-	
-	public void validatePostType ( String postType) throws InvalidPostException{
-		List<Post> opt = this.feedPostRepository.findBypostType(postType);
-		if (opt.isEmpty()) {
-			logger.debug("PostType={} does not exist", postType); 
-			throw new InvalidPostException ("This PostType does not exist");
-		}else {
-			logger.debug("PostType={} validated", postType); 
-		}
-		
-	}
+//	public void validatePostID(String postID)throws InvalidPostException{
+//		Optional<Post> opt = this.feedPostRepository.findById(postID);
+//		if (opt.isEmpty()) {
+//			logger.debug("PostID={} does not exist", postID); 
+//			throw new InvalidPostException ("This postID does not exist");
+//		} else {
+//			logger.debug("PostID={} validated",postID);
+//		}
+//		
+//	}
+//	
+//	public void validatePostType ( String postType) throws InvalidPostException{
+//		List<Post> opt = this.feedPostRepository.findBypostType(postType);
+//		if (opt.isEmpty()) {
+//			logger.debug("PostType={} does not exist", postType); 
+//			throw new InvalidPostException ("This PostType does not exist");
+//		}else {
+//			logger.debug("PostType={} validated", postType); 
+//		}
+//		
+//	}
 	
 	
 	

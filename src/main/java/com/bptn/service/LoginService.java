@@ -15,7 +15,6 @@ import com.bptn.repository.LogInRepository;
 public class LoginService {
 	
 	
-	
 	@Autowired    //dependecy injection : enables automatic dependency injection
 	LogInRepository loginRepository; 
 	
