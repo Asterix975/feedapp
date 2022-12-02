@@ -1,117 +1,99 @@
 package com.bptn.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import javax.persistence.Entity; 
-import javax.persistence.Table; 
-import javax.persistence.Column;
-
-import java.util.List;
-
+import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import javax.persistence.*;
 
+@Entity
+@Table(name = "\"UserID\"")
+@NamedQuery(name="UserID.findAll", query="SELECT u FROM UserID u")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+public class UserID implements Serializable {
 
-@Entity 
-@Table (name = "\"userID\"")
+	private static final long serialVersionUID = 1L;
 
-public class UserID {
-	
-	@Id
-	@Column ( name = "username")
-	String username;
-	
-	@Column ( name = "name")
-	String name;
-	
-	@Column ( name = "\"emailID\"")
-	String emailID;
-	
-	@Column ( name = "\"phoneNumber\"")
-	String phoneNumber;
-	
-	@Column ( name = "\"userPassword\"")
-	String userPassword;
-	
-	@OneToMany(mappedBy="userID") // userID is the object name we use in the post entity
-	List<Post>posts; 
-	
-	@OneToMany(mappedBy="userID") // userID is the object name we use in the post entity
-	List<History>history; 
+    @Id
+    @Column(name = "username", nullable = false)
+    private String username;
 
+    @Column(name = "name", nullable = false)
+    private String name;
 
-	public List<History> getHistory() {
-		return history;
-	}
+    @Column(name = "\"emailID\"", nullable = false)
+    private String emailID;
 
-	public void setHistory(List<History> history) {
-		this.history = history;
-	}
+    @Column(name = "\"phoneNumber\"", nullable = false)
+    private String phoneNumber;
 
-	public UserID (String username) {
-		super();
-		this.username = username; 
-	}
-	
-	public UserID () {
-		super();
-	}
+    @OneToMany(mappedBy = "usernameKey", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Set<Role> roles = new LinkedHashSet<>();
 
-	public String getUsername() {
-		return username;
-	}
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "userID")
+    @JsonManagedReference
+    private Profile profile;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    @OneToMany(mappedBy = "usernameKey", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Set<Address> addresses = new LinkedHashSet<>();
 
-	public String getName() {
-		return name;
-	}
+    public Set<Address> getAddresses() {
+        return addresses;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setAddresses(Set<Address> addresses) {
+        this.addresses = addresses;
+    }
 
-	public String getEmailID() {
-		return emailID;
-	}
+    public Profile getProfile() {
+        return profile;
+    }
 
-	public void setEmailID(String emailID) {
-		this.emailID = emailID;
-	}
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    public Set<Role> getRoles() {
+        return roles;
+    }
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
-	public String getUserPassword() {
-		return userPassword;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
-	}
-	
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-	public List<Post> getPosts() {
-		return posts;
-	}
-	
-	public void setPosts(List<Post> posts) {
-		this.posts = posts;
-	}
+    public String getEmailID() {
+        return emailID;
+    }
 
+    public void setEmailID(String emailID) {
+        this.emailID = emailID;
+    }
 
-	@Override
-	public String toString() {
-		return "UserID [username=" + username + ", name=" + name + ", emailID=" + emailID + ", phoneNumber="
-				+ phoneNumber + ", userPassword=" + userPassword + ", posts=" + posts + ", history=" + history + "]";
-	}
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String id) {
+        this.username = id;
+    }
 }
-
-
-	
-	

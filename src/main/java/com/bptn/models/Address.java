@@ -1,103 +1,70 @@
 package com.bptn.models;
 
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import java.io.Serializable;
 import javax.persistence.*;
 
+@Entity
+@Table(name = "\"Address\"")
+@NamedQuery(name="Address.findAll", query="SELECT a FROM Address a")
+public class Address implements Serializable{
 
-@Entity 
-@Table (name = "\"Address\"")
+    @EmbeddedId
+    private AddressId id;
 
-public class Address {
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "\"usernameKey\"", nullable = false)
+    @JsonBackReference
+    private UserID usernameKey;
 
+    @Column(name = "city", nullable = false)
+    private String city;
 
-	@Id
-	@Column ( name = "\"usernameKey\"")
-	String usernameKey;
-	
-	@Column ( name = "address")
-	String address;
-	
-	@Column ( name = "city")
-	String city;
-	
-	@Column ( name = "state")
-	String state;
-	
-	@Column ( name = "country")
-	String country;
-	
-	@Column ( name = "pincode")
-	String pincode;
-	
-	public Address() {
-		super();
-	}
-	
-	public Address(String usernameKey, String address, String city, String state, String country, String pincode) {
-		super();
-		this.usernameKey = usernameKey;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.country = country;
-		this.pincode = pincode;
-	}
+    @Column(name = "state", nullable = false)
+    private String state;
 
-	public String getUsernameKey() {
-		return usernameKey;
-	}
+    @Column(name = "country", nullable = false)
+    private String country;
 
-	public void setUsernameKey(String usernameKey) {
-		this.usernameKey = usernameKey;
-	}
+    public String getCountry() {
+        return country;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public String getState() {
+        return state;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public void setState(String state) {
+        this.state = state;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public String getState() {
-		return state;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public UserID getUsernameKey() {
+        return usernameKey;
+    }
 
-	public String getCountry() {
-		return country;
-	}
+    public void setUsernameKey(UserID usernameKey) {
+        this.usernameKey = usernameKey;
+    }
 
-	public void setCountry(String country) {
-		this.country = country;
-	}
+    public AddressId getId() {
+        return id;
+    }
 
-	public String getPincode() {
-		return pincode;
-	}
-
-	public void setPincode(String pincode) {
-		this.pincode = pincode;
-	}
-
-	
-
-	@Override
-	public String toString() {
-		return "Address [usernameKey=" + usernameKey + ", address=" + address + ", city=" + city + ", state=" + state
-				+ ", country=" + country + ", pincode=" + pincode + "]";
-	}
-	
-
-	
+    public void setId(AddressId id) {
+        this.id = id;
+    }
 }
