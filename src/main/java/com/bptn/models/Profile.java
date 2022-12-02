@@ -1,160 +1,154 @@
 package com.bptn.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
+@Entity
+@Table(name = "\"Profile\"")
+@NamedQuery(name="Profile.findAll", query="SELECT p FROM Profile p")
+public class Profile implements Serializable {
 
-@Entity 
-@Table (name = "\"Profile\"")
+    @Id
+    @Column(name = "\"usernameKey\"", nullable = false)
+    private String username;
 
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "\"usernameKey\"", nullable = false)
+    @JsonBackReference
+    private UserID userID;
+    
+    @Column(name = "\"position\"", nullable = false)
+    private String position;
 
-public class Profile {
+    @Column(name = "company", nullable = false)
+    private String company;
 
-	
-	@Id
-	@Column ( name = "\"usernameKey\"")
-	String usernameKey;
-	
-	@Column ( name = "position")
-	String position;
-	
-	@Column ( name = "company")
-	String company;
-	
-	@Column ( name = "\"companyAddress\"")
-	String companyAddress;
-	
-	@Column ( name = "interests")
-	String interests;
-	
-	@Column ( name = "experience")
-	String experience;
-	
-	@Column ( name = "education")
-	String education;
-	
-	@Column ( name = "certification")
-	String certification;
-	
-	@Column ( name = "skills")
-	String skills;
-	
-	@Column ( name = "language")
-	String language;
-	
-	public Profile() {
-		super();
-	}
-	
-	public Profile(String usernameKey, String position, String company, String companyAddress, String interests,
-			String experience, String education, String certification, String skills, String language) {
-		super();
-		this.usernameKey = usernameKey;
-		this.position = position;
-		this.company = company;
-		this.companyAddress = companyAddress;
-		this.interests = interests;
-		this.experience = experience;
-		this.education = education;
-		this.certification = certification;
-		this.skills = skills;
-		this.language = language;
-	}
+    @Column(name = "\"companyAddress\"", nullable = false)
+    private String companyAddress;
 
+    @Column(name = "interests", nullable = false)
+    private String interests;
 
-	public String getUsernameKey() {
-		return usernameKey;
-	}
+    @Column(name = "experience", nullable = false)
+    private String experience;
 
-	public void setUsernameKey(String usernameKey) {
-		this.usernameKey = usernameKey;
-	}
+    @Column(name = "education", nullable = false)
+    private String education;
 
-	public String getPosition() {
-		return position;
-	}
+    @Column(name = "certification", nullable = false)
+    private String certification;
 
-	public void setPosition(String position) {
-		this.position = position;
-	}
+    @Column(name = "skills", nullable = false)
+    private String skills;
 
-	public String getCompany() {
-		return company;
-	}
+    @Column(name = "languages", nullable = false)
+    private String languages;
 
-	public void setCompany(String company) {
-		this.company = company;
-	}
+    public String getLanguages() {
+        return languages;
+    }
 
-	public String getCompanyAddress() {
-		return companyAddress;
-	}
+    public void setLanguages(String languages) {
+        this.languages = languages;
+    }
 
-	public void setCompanyAddress(String companyAddress) {
-		this.companyAddress = companyAddress;
-	}
+    public String getSkills() {
+        return skills;
+    }
 
-	public String getInterests() {
-		return interests;
-	}
+    public void setSkills(String skills) {
+        this.skills = skills;
+    }
 
-	public void setInterests(String interests) {
-		this.interests = interests;
-	}
+    public String getCertification() {
+        return certification;
+    }
 
-	public String getExperience() {
-		return experience;
-	}
+    public void setCertification(String certification) {
+        this.certification = certification;
+    }
 
-	public void setExperience(String experience) {
-		this.experience = experience;
-	}
+    public String getEducation() {
+        return education;
+    }
 
-	public String getEducation() {
-		return education;
-	}
+    public void setEducation(String education) {
+        this.education = education;
+    }
 
-	public void setEducation(String education) {
-		this.education = education;
-	}
+    public String getExperience() {
+        return experience;
+    }
 
-	public String getCertification() {
-		return certification;
-	}
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
 
-	public void setCertification(String certification) {
-		this.certification = certification;
-	}
+    public String getInterests() {
+        return interests;
+    }
 
-	public String getSkills() {
-		return skills;
-	}
+    public void setInterests(String interests) {
+        this.interests = interests;
+    }
 
-	public void setSkills(String skills) {
-		this.skills = skills;
-	}
+    public String getCompanyAddress() {
+        return companyAddress;
+    }
 
-	public String getLanguage() {
-		return language;
-	}
+    public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
+    }
 
-	public void setLanguage(String language) {
-		this.language = language;
-	}
+    public String getCompany() {
+        return company;
+    }
 
+    public void setCompany(String company) {
+        this.company = company;
+    }
 
-	@Override
-	public String toString() {
-		return "Profile [usernameKey=" + usernameKey + ", position=" + position + ", company=" + company
-				+ ", companyAddress=" + companyAddress + ", interests=" + interests + ", experience=" + experience
-				+ ", education=" + education + ", certification=" + certification + ", skills=" + skills + ", language="
-				+ language + "]";
-	}
-	
-	
-	
-	
-	
-	
-	
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public UserID getUserID() {
+        return userID;
+    }
+
+    public void setUserID(UserID userID) {
+        this.userID = userID;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String id) {
+        this.username = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "username='" + username + '\'' +
+                ", userID=" + userID +
+                ", position='" + position + '\'' +
+                ", company='" + company + '\'' +
+                ", companyAddress='" + companyAddress + '\'' +
+                ", interests='" + interests + '\'' +
+                ", experience='" + experience + '\'' +
+                ", education='" + education + '\'' +
+                ", certification='" + certification + '\'' +
+                ", skills='" + skills + '\'' +
+                ", languages='" + languages + '\'' +
+                '}';
+    }
 }
