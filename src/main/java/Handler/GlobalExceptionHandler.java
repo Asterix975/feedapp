@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.bptn.exceptions.InvalidPostException;
 import com.bptn.exceptions.InvalidRequestException;
+
+
 
 @ControllerAdvice 
 public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler{
@@ -26,8 +29,16 @@ public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler{
 	@ExceptionHandler(InvalidRequestException.class)
 	public ResponseEntity<String> handleInvalidRequestExceptions(Exception ex, WebRequest request) {
 		logger.debug(ex. getMessage(),ex);  
-		return ResponseEntity.badRequest().body(ex.getMessage()); 
-	
-	
+		return ResponseEntity.badRequest().body(ex.getMessage()); 	
 }
+	
+	@ExceptionHandler(InvalidPostException.class)
+	public ResponseEntity<String> handleInvalidPostExceptions(Exception ex, WebRequest request) {
+		logger.debug("Error with postId/postType");
+		logger.debug(ex.getMessage(), ex);
+		
+		return ResponseEntity.badRequest().body(ex.getMessage());
+	}
+	
+	
 }

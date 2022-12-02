@@ -40,8 +40,20 @@ public class UserID implements Serializable {
     @OneToMany(mappedBy = "usernameKey", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Address> addresses = new LinkedHashSet<>();
+    
+    public UserID() {
+    	super();
+	}
 
-    public Set<Address> getAddresses() {
+	public UserID(String username) {
+		this.username = username;
+	}
+
+//	public UserID(String username2) {
+//		// TODO Auto-generated constructor stub
+//	}
+
+	public Set<Address> getAddresses() {
         return addresses;
     }
 
