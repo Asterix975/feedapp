@@ -42,7 +42,7 @@ public class FeedPostController {
 		try {
 			this.validateRequest(request);
 			
-			this.userService.userValidation(request.getUsername());
+			this.userService.validateUserId(request.getUsername());
 			
 			Post feed = this.feedPostService.getPostFormNewsAndSavePost(request);
 			logger.debug("Post Saved Succesfully"); 
@@ -67,7 +67,7 @@ public class FeedPostController {
 		
 			this.validateRequest(request);
 			
-			this.userService.userValidation(request.getUsername());
+			this.userService.validateUserId(request.getUsername());
 			
 			Post feed = this.feedPostService.getPostFormNewsAndSavePost(request);
 			logger.debug("Post Saved Succesfully"); 

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.bptn.exceptions.InvalidPostException;
 import com.bptn.models.History;
-import com.bptn.models.Post;
 import com.bptn.models.UserID;
 import com.bptn.repository.FeedHistoryRepository;
 
