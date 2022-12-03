@@ -1,161 +1,100 @@
 package com.bptn.models;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
+import javax.persistence.*;
 
-@Entity 
-@Table (name = "\"ImageMetaData\"")
+@Entity
+@Table(name = "\"ImageMetaData\"")
+@NamedQuery(name="ImageMetaData.findAll", query="SELECT i FROM ImageMetaData i")
+public class ImageMetaData implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 
-public class ImageMetaData {
-	
-	@Id
-	@Column ( name = "\"imageID\"")
-	String imageID;
-	
-	@Column ( name = "\"imageName\"")
-	String imageName;
-	
-	@Column ( name = "\"imageSize\"")
-	String imageSize;
-	
-	@Column ( name = "\"imageFormat\"")
-	String imageFormat;
-	
-	@Column ( name = "\"imageDate\"")
-	String imageDate;
-	
-	@Column ( name = "resolution")
-	String resolution;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "\"imageID\"", nullable = false)
+    private Long id;
 
-	/*@Column ( name = "\"postKey\"")
-	String postKey; */
-	
-	@JsonIgnore 
-	@OneToOne (cascade = {CascadeType.ALL})
-	@JoinColumn(name="\"postKey\"")
-	Post post;
-	
-	
-	public ImageMetaData() {
-		super();
-	}
-	
-	/*public ImageMetaData(String imageID, String imageName, String imageSize, String imageFormat, String imageDate,
-			String resolution, String postKey) {
-		super();
-		this.imageID = imageID;
-		this.imageName = imageName;
-		this.imageSize = imageSize;
-		this.imageFormat = imageFormat;
-		this.imageDate = imageDate;
-		this.resolution = resolution;
-		this.postKey = postKey;
-	} */
+    
+    @Column(name = "\"imageName\"", nullable = false)
+    private String imageName;
 
-	public Post getPost() {
-		return post;
-	}
+    
+    @Column(name = "\"imageSize\"", nullable = false)
+    private String imageSize;
 
-	public void setPost(Post post) {
-		this.post = post;
-	}
+    
+    @Column(name = "\"imageFormat\"", nullable = false)
+    private String imageFormat;
 
-	public String getImageID() {
-		return imageID;
-	}
+    
+    @Column(name = "\"imageDate\"", nullable = false)
+    private String imageDate;
 
-	public void setImageID(String imageID) {
-		this.imageID = imageID;
-	}
+    
+    @Column(name = "resolution", nullable = false)
+    private String resolution;
 
-	public String getImageName() {
-		return imageName;
-	}
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "\"postKey\"", nullable = false)
+    @JsonBackReference
+    private Post postKey;
 
-	public void setImageName(String imageName) {
-		this.imageName = imageName;
-	}
+    public Post getPostKey() {
+        return postKey;
+    }
 
-	public String getImageSize() {
-		return imageSize;
-	}
+    public void setPostKey(Post postKey) {
+        this.postKey = postKey;
+    }
 
-	public void setImageSize(String imageSize) {
-		this.imageSize = imageSize;
-	}
+    public String getResolution() {
+        return resolution;
+    }
 
-	public String getImageFormat() {
-		return imageFormat;
-	}
+    public void setResolution(String resolution) {
+        this.resolution = resolution;
+    }
 
-	public void setImageFormat(String imageFormat) {
-		this.imageFormat = imageFormat;
-	}
+    public String getImageDate() {
+        return imageDate;
+    }
 
-	public String getImageDate() {
-		return imageDate;
-	}
+    public void setImageDate(String imageDate) {
+        this.imageDate = imageDate;
+    }
 
-	public void setImageDate(String imageDate) {
-		this.imageDate = imageDate;
-	}
+    public String getImageFormat() {
+        return imageFormat;
+    }
 
-	public String getResolution() {
-		return resolution;
-	}
+    public void setImageFormat(String imageFormat) {
+        this.imageFormat = imageFormat;
+    }
 
-	public void setResolution(String resolution) {
-		this.resolution = resolution;
-	}
+    public String getImageSize() {
+        return imageSize;
+    }
 
-	public ImageMetaData(String imageID, String imageName, String imageSize, String imageFormat, String imageDate,
-			String resolution, Post post) {
-		super();
-		this.imageID = imageID;
-		this.imageName = imageName;
-		this.imageSize = imageSize;
-		this.imageFormat = imageFormat;
-		this.imageDate = imageDate;
-		this.resolution = resolution;
-		this.post = post;
-	}
+    public void setImageSize(String imageSize) {
+        this.imageSize = imageSize;
+    }
 
-	@Override
-	public String toString() {
-		return "ImageMetaData [imageID=" + imageID + ", imageName=" + imageName + ", imageSize=" + imageSize
-				+ ", imageFormat=" + imageFormat + ", imageDate=" + imageDate + ", resolution=" + resolution + ", post="
-				+ post + "]";
-	}
+    public String getImageName() {
+        return imageName;
+    }
 
-	/*public String getPostKey() {
-		return postKey;
-	}
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
 
-	public void setPostKey(String postKey) {
-		this.postKey = postKey;
-	} */
+    public Long getId() {
+        return id;
+    }
 
-
-	/*@Override
-	public String toString() {
-		return "ImageMetaData [imageID=" + imageID + ", imageName=" + imageName + ", imageSize=" + imageSize
-				+ ", imageFormat=" + imageFormat + ", imageDate=" + imageDate + ", resolution=" + resolution
-				+ ", postKey=" + postKey + "]";
-	} */
-	
-	
-
-
-	
-	
-	
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
