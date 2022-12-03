@@ -1,93 +1,75 @@
 package com.bptn.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "\"Post\"")
+@NamedQuery(name="Post.findAll", query="SELECT p FROM Post p")
+public class Post implements Serializable {
 
 
-@Entity 
-@Table (name = "\"Post\"")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "\"postID\"", nullable = false)
+    private Long id;
 
-public class Post{
-	
-	@Id
-	@Column ( name = "\"postID\"")
-	String postID;
-	
-	@Column ( name = "\"postType\"")
-	String postType;
-	
-	@OneToOne(mappedBy = "post")
-	ImageMetaData imageMetaData; 
-	
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name="\"usernameKey\"")
-	UserID userID;   //relation with the userid table 
-	
-	//@OneToOne(mappedBy = "post")
-	//ImageMetaData imageMetaData;   
-	
-	public Post() {
-		super();
-	}
-	
-	public Post (String postID) {
-		super();
-		this.postID = postID; 
-	}
-	
-	public Post(String postID, String postType, UserID userID, ImageMetaData imageMetaData) {
-		super();
-		this.postID = postID;
-		this.postType = postType;
-		this.userID = userID;
-		this.imageMetaData = imageMetaData;
-	}
+    @Column(name = "\"postType\"", nullable = false)
+    private String postType;
 
-	public UserID getUserID() {
-		return userID;
-	}
+    
+    @Column(name = "post", nullable = false)
+    private String post;
 
-	public void setUserID(UserID userID) {
-		this.userID = userID;
-	}
-	
-	public ImageMetaData getImageMetaData() {
-		return imageMetaData;
-	}
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "\"usernameKey\"", nullable = false)
+    private String usernameKey;
 
-	public void setImageMetaData(ImageMetaData imageMetaData) {
-		this.imageMetaData = imageMetaData;
-	}
+    @OneToMany(mappedBy = "postKey")
+    @JsonManagedReference
+    private Set<ImageMetaData> imageMetaData = new LinkedHashSet<>();
 
-	public String getPostID() {
-		return postID;
-	}
+    public Set<ImageMetaData> getImageMetaData() {
+        return imageMetaData;
+    }
 
-	public void setPostID(String postID) {
-		this.postID = postID;
-	}
+    public void setImageMetaData(Set<ImageMetaData> imageMetaData) {
+        this.imageMetaData = imageMetaData;
+    }
 
-	public String getPostType() {
-		return postType;
-	}
+    public String getUsernameKey() {
+        return usernameKey;
+    }
 
-	public void setPostType(String postType) {
-		this.postType = postType;
-	}
+    public void setUsernameKey(String usernameKey) {
+        this.usernameKey = usernameKey;
+    }
 
-	@Override
-	public String toString() {
-		return "Post [postID=" + postID + ", postType=" + postType + ", userID=" + userID + ", imageMetaData="
-				+ imageMetaData + "]";
-	}
-	
-	
+    public String getPost() {
+        return post;
+    }
+
+    public void setPost(String post) {
+        this.post = post;
+    }
+
+    public String getPostType() {
+        return postType;
+    }
+
+    public void setPostType(String postType) {
+        this.postType = postType;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
