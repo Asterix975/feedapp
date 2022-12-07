@@ -74,7 +74,7 @@ public class FeedController {
     @GetMapping(value = "/Posts/postType/{postType}")
     public ResponseEntity<Object> getPostsByPostType(@PathVariable("postType") String postType) {
         LOGGER.debug("Executing getPostsByPostType API");
-        Post feed;
+        List<Post> feed;
         try {
             feed = feedService.getPostsByPostType(postType);
         } catch (InvalidPostException e) {

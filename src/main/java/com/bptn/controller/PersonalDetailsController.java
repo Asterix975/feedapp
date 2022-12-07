@@ -1,18 +1,24 @@
 package com.bptn.controller;
 
-import com.bptn.models.AuthenticationUser;
-import com.bptn.models.Profile;
-import com.bptn.models.UserID;
-import com.bptn.request.AddressRequest;
-import com.bptn.service.PersonalDetailsService;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import com.bptn.models.Address;
+import com.bptn.models.AuthenticationUser;
+import com.bptn.models.Profile;
+import com.bptn.models.UserID;
+import com.bptn.request.AddressRequest;
+import com.bptn.service.PersonalDetailsService;
 
 @Controller
 public class PersonalDetailsController {
@@ -43,4 +49,18 @@ public class PersonalDetailsController {
         UserID userID = personalDetailsService.addressUpdate(addressRequest);
         return new ResponseEntity<>(userID, HttpStatus.OK);
     }
+    @GetMapping("/user/basicprofile/{username}")
+    public ResponseEntity<?> userBasicProfile(@PathVariable("username") String username)  {
+        LOGGER.debug("userBasicProfile request received = {}", username);
+        Profile profile = personalDetailsService.getProfile(username);
+        return new ResponseEntity<>(profile, HttpStatus.OK);
+    }
+
+    @GetMapping("/user/address/{username}")
+    public ResponseEntity<?> userAddress(@PathVariable("username") String username)  {
+        LOGGER.debug("userAddress request received = {}", username);
+        Set<Address> address = personalDetailsService.getAddress(username);
+        return new ResponseEntity<>(address, HttpStatus.OK);
+    }
+    
 }
